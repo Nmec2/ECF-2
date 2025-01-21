@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartEvent</title>
+    
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="./style/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style/bootstrap.css">
 </head>
 <body>
     <header>
@@ -14,10 +16,12 @@
                 <a href="" class="navbar-brand text-light fw-bolder ms-5">SmartEvent</a>
                 <div class="navbar-toggler">
                     <a class="btn btn-outline-light" href="./create.php" role="button">Create Account</a>
-                    <a class="btn btn-outline-primary " href="./connexion.php" role="button">Connexion</a>
+                    <a class="btn btn-primary" href="./connexion.php" role="button">Connexion</a>
                 </div>  
             </div>
         </nav>
+
+        
     </header>
 
     <main>

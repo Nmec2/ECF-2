@@ -4,15 +4,24 @@ if(isset($_POST['submit'])){
     $connection = new Dbh;
     $bdd = $connection->getConnection();
 
+
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $repassword = $_POST['repassword'];
+    
+    $verif = $bdd ->prepare("SELECT COUNT(*) FROM `users` WHERE email = :email");
+    $verif->bindParam(':email', $email, PDO::PARAM_STR);
+    $verif->execute();
+    $count = $verif->fetchColumn();
 
     $hash = '';
 
     if (empty($name) || empty($email) || empty($password) || empty($repassword)){
         header('Location: create.php?error=emptyfield');
+        exit();
+    } else if($count > 0){
+        header('Location: create.php?error=alreadymail');
         exit();
     } else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         header('Location: create.php?error=invalidmail');
@@ -29,7 +38,13 @@ if(isset($_POST['submit'])){
     } else {
         $hash = password_hash($password, PASSWORD_BCRYPT);
         echo $hash;
-        $bdd->prepare('');
-        //faire l'insertion dans la bdd
+        $req = $bdd->prepare("INSERT INTO `users`(`name`, `email`, `password`, `user_date_creation`) VALUES (:name, :email, :password,NOW())");
+        $req->execute(array(':name' => $name,
+                            ':email' => $email,
+                            ':password' => $hash
+        ));
+        header("Location: create.php?error=success");
     }
+} else {
+    header("Location: create.php");
 }
