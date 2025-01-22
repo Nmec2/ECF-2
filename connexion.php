@@ -19,6 +19,8 @@
                         echo '<p class="text-danger">Veuillez remplir une email valide!';
                     } else if($_GET['error'] == 'incorrect'){
                         echo '<p class="text-danger">Mot de passe incorrect!';
+                    } else if($_GET['error'] == 'connect'){
+                        echo '<p class="text-danger">Veuillez vous connecter!';
                     }
                 }
             ?>

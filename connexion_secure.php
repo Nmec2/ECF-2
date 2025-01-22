@@ -8,7 +8,7 @@ if(isset($_POST['submit-co']) && $_POST['pass'] != '' && $_POST['mail'] != ''){
     $mail = $_POST['mail'];
     $pass = $_POST['pass'];
     
-    $requ = $bdd->prepare("SELECT `id_user`, `name`, `email`, `password`, `user_date_creation` FROM `users` WHERE `email` = :mail");
+    $requ = $bdd->prepare('SELECT `id_user`, `name`, `email`, `password`, DATE_FORMAT(user_date_creation, "%d/%m/%Y à %H:%i:%s") as DATE_AFF FROM `users` WHERE `email` = :mail');
     $requ->bindParam(':mail', $mail, PDO::PARAM_STR);
     $requ->execute();
     $test = $requ->fetch(PDO::FETCH_ASSOC);
@@ -19,7 +19,7 @@ if(isset($_POST['submit-co']) && $_POST['pass'] != '' && $_POST['mail'] != ''){
             $_SESSION['id'] = $test['id_user']; 
             $_SESSION['name'] = $test['name']; 
             $_SESSION['email'] = $test['email'];
-            $_SESSION['date_user'] = $test['user_date_creation']; 
+            $_SESSION['date_user'] = $test['DATE_AFF']; 
             $_SESSION['connecter'] = 'true';
             header('Location: events.php');
         } else if(!filter_var($mail, FILTER_VALIDATE_EMAIL)){

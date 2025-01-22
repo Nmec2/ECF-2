@@ -24,9 +24,7 @@
         
     </header>
 
-    <main>
-        <div class="container-fluid">
-        </div>      
+    <main>     
     </main>
 
     <footer>

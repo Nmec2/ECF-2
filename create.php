@@ -43,7 +43,7 @@
                 <input type="password" class="form-control" id="password" name="password">
             </div>
             <div class="mb-3">
-                <label for="repassword" class="form-label">Password</label>
+                <label for="repassword" class="form-label">Re password</label>
                 <input type="password" class="form-control" id="repassword" name="repassword">
             </div>
             <p>Got an account ? <a href="connexion.php"> We got you <a></p>

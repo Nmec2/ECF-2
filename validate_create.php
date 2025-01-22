@@ -37,7 +37,6 @@ if(isset($_POST['submit'])){
         exit();
     } else {
         $hash = password_hash($password, PASSWORD_BCRYPT);
-        echo $hash;
         $req = $bdd->prepare("INSERT INTO `users`(`name`, `email`, `password`, `user_date_creation`) VALUES (:name, :email, :password,NOW())");
         $req->execute(array(':name' => $name,
                             ':email' => $email,
