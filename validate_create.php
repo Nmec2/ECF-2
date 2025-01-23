@@ -4,7 +4,6 @@ if(isset($_POST['submit'])){
     $connection = new Dbh;
     $bdd = $connection->getConnection();
 
-
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];

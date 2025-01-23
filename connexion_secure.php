@@ -13,6 +13,8 @@ if(isset($_POST['submit-co']) && $_POST['pass'] != '' && $_POST['mail'] != ''){
     $requ->execute();
     $test = $requ->fetch(PDO::FETCH_ASSOC);
 
+    
+
     if(isset($test['password'])){
         if(password_verify($pass, $test['password'])){
             session_start();
@@ -21,6 +23,14 @@ if(isset($_POST['submit-co']) && $_POST['pass'] != '' && $_POST['mail'] != ''){
             $_SESSION['email'] = $test['email'];
             $_SESSION['date_user'] = $test['DATE_AFF']; 
             $_SESSION['connecter'] = 'true';
+            if(isset($_POST['Check1'])){
+                $remember = $_POST['Check1'];
+                setcookie("remember_mail", $mail, time() + 3600*24*365);
+                setcookie("remember", $remember, time() + 3600*24*365);
+            } else {
+                setcookie("remember_mail", '', time() - 36000);
+                setcookie("remember", '', time() - 3600);
+            }
             header('Location: events.php');
         } else if(!filter_var($mail, FILTER_VALIDATE_EMAIL)){
             header('Location: connexion.php?error=invalidmail');

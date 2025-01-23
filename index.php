@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/bootstrap.css">
 </head>
-<body>
+<body style="background-image: url('./img/bg-index.webp');">
     <header>
         <nav class="navbar p-3 bg-dark">
             <div class="container-fluid">
@@ -25,6 +25,28 @@
     </header>
 
     <main>     
+        <div class="container text-center d-flex justify-content-evenly overflow-hidden" style="height: 80vh;">
+            <div class="row align-items-center">
+                <div class="col ">
+                    <h1 class="display-1 text-light">SmartEvent</h1>
+                    <p class="lead text-light">Get started with us check-out our new features.</p>
+                    <a href="./create.php" class="btn btn-primary">Create Account</a>
+                    <a href="./connexion.php" class="btn btn-outline-light">Connexion</a>
+                    <p>
+                        <button class="btn text-light mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                            Learn more
+                        </button>
+                    </p>
+                    <div style="min-height: 120px;">
+                        <div class="collapse collapse-vertical" id="collapseWidthExample">
+                            <div class="card card-body align-items-center" style="width: 600px; background:transparent; border: 1px solid #FFF; backdrop-filter: saturate(150%);">
+                                <p class="text-light">SmartEvent is a web application that allows you to create and manage your events.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>

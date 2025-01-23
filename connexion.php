@@ -26,14 +26,14 @@
             ?>
             <div class="mb-3">
                 <label for="mail" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="mail" name="mail" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="mail" name="mail" aria-describedby="emailHelp" value="<?php if(isset($_COOKIE['remember_mail'])){echo $_COOKIE['remember_mail'];} ?>">
             </div>
             <div class="mb-3">
                 <label for="pass" class="form-label">Password</label>
                 <input type="password" id="pass" name="pass" class="form-control" >
             </div>
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="Check1">
+                <input type="checkbox" class="form-check-input" id="Check1" name="Check1" <?php if(isset($_COOKIE['remember'])){echo 'checked';} ?>>
                 <label class="form-check-label" for="Check1">Remember me</label>
             </div>
             <p>No account ? Create one <a href="create.php">here<a><p>

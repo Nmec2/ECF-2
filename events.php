@@ -28,12 +28,15 @@
             <p class="fs-5 text-danger text-center pt-3"><?php echo 'Bienvenue '. $_SESSION['name']?></a>
             <p class="fs-6 text-light text-center pt-1"><?php echo 'Membre depuis le '. $_SESSION['date_user']?></a>
             <div id="flex" >
-                <a class="btn btn-primary" href="#" role="button">Profil</a>
+                <a class="btn btn-primary"  role="button"  data-bs-toggle="modal" data-bs-target="#loginmodal">Profil</a>
                 <a class="btn btn-primary" href="#" role="button">My Event</a>
                 <a class="btn btn-primary"  role="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Event</a>
                 <a class="btn btn-primary" href="./deconnexion.php" role="button">Deconnexion</a>
             </div>
         </div>
+
+
+
     </header>
     <main>
     <p class="fs-1 text-danger text-center pt-5 position-absolute top-0 start-50">My Event</p>
@@ -43,7 +46,7 @@
         <?php
             if(isset($_SESSION['id'])){
                 $id_user = $_SESSION['id'];
-                $req2 = $bdd->prepare('SELECT `id_event`, `name`, `type`, DATE_FORMAT(date, "%d/%m/%Y") as DATE_AFF, `text`, `style`, `id_user` FROM `events` WHERE `id_user` = :id');
+                $req2 = $bdd->prepare('SELECT `id_event`, `name`, `type`, DATE_FORMAT(date, "%d/%m/%Y") as DATE_AFF, `time`, `text`, `style`, `id_user` FROM `events` WHERE `id_user` = :id ORDER BY `date` ASC, `time` ASC');
                 $req2->bindParam(':id', $id_user, PDO::PARAM_INT);
                 $req2->execute();
                 while($result = $req2->fetch(PDO::FETCH_ASSOC)){
@@ -71,28 +74,81 @@
                             $color = 'text-bg-dark';
                             break;
                     } 
-                    if(!isset($result)){
-                    echo    '<div class="card bg-light mb-3 " style="max-width: 100%;">
-                        <div class="card-header"> No Event Set</div>
+                //     if(!isset($result)){
+                //     echo    '<div class="card bg-light mb-3 " style="max-width: 100%;">
+                //         <div class="card-header"> No Event Set</div>
                         
-                            <div class="card-header"></div>
-                                <div class="card-body">
-                                    <h5 class="card-title"></h5>
-                                    <p class="card-text"></p>
-                                </div>
-                     </div>';
-                }
-                    
+                //             <div class="card-header"></div>
+                //                 <div class="card-body">
+                //                     <h5 class="card-title"></h5>
+                //                     <p class="card-text"></p>
+                //                 </div>
+                //      </div>';
+                // }
                     echo '<div class="card '. $color .' mb-3 " style="max-width: 18rem;">
                             <div class="card-header">'. $result['name'] .'</div>
                             
-                                <div class="card-header">'. $result['DATE_AFF'] .'</div>
+                                <div class="card-header">'. $result['DATE_AFF'] .' '. $result['time'].'</div>
                                     <div class="card-body">
                                         <h5 class="card-title">'. $result['type'] .'</h5>
                                         <p class="card-text">'. $result['text'] .'</p>
-                                        <a class="btn btn-dark" role="button" href="delete.php?id='.$result['id_event'].'">Delete</a>
+                                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal'.$result['id_event'].'">Edit</button>
+                                        <a class="btn btn-primary" role="button" href="delete.php?id='.$result['id_event'].'">Delete</a>
                                     </div>
                          </div>';
+                        $date = explode('/',$result['DATE_AFF']);
+                        $newdate = $date[2].'-'.$date[1].'-'.$date[0];
+                        echo '<div class="modal fade text-start" id="exampleModal'.$result['id_event'].'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Event</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <form id="event'.$result['id_event'].'" action="updatevent.php?id='.$result['id_event'].'" method="POST">
+                                                <div class="mb-3">
+                                                    <label for="eventname" class="form-label">Event Name</label>
+                                                    <input type="text" class="form-control" required id="eventname" name="eventname" aria-describedby="eventname" value="'.$result['name'].'">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="eventtype" class="form-label">Event Place</label>
+                                                    <input type="text" class="form-control" id="eventtype" name="eventtype" value="'.$result['type'].'">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="eventtext" class="form-label">Event Text Content</label>
+                                                    <textarea maxlength="150"class="form-control" id="eventtext" name="eventtext" aria-label="With textarea">'. $result['text'] .'</textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="eventdate" class="form-label">Event Date</label>
+                                                    <input type="date" required class="form-control" id="eventdate" name="eventdate" value="'. $newdate .'">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="eventtime" class="form-label">Event Time</label>
+                                                    <input type="time" required class="form-control" id="eventtime"value="'.$result['time'].'" name="eventtime">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="eventstyle'.$result['id_event'].'" class="form-label">Event Style Color</label>
+                                                    <select name="eventstyle'.$result['id_event'].'" form="event'.$result['id_event'].'" id="eventstyle'.$result['id_event'].'" class="form-select" aria-label="Default select example">
+                                                        <option value="1">None</option>
+                                                        <option value="2">Grey</option>
+                                                        <option value="3">Green</option>
+                                                        <option value="4">Red</option>
+                                                        <option value="5">Yellow</option>
+                                                        <option value="6">Blue</option>
+                                                        <option value="7">Dark</option>
+                                                    </select>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                    </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>';
                 }
                 
 
@@ -103,8 +159,9 @@
         </div>
     </div>
 
-
-
+    
+    <!-- Modal -->
+        
 
 
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -115,13 +172,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="event" action="addevent.php" method="POST">
+                        <form id="event2" action="addevent.php" method="POST">
                             <div class="mb-3">
                                 <label for="eventname" class="form-label">Event Name</label>
                                 <input type="text" class="form-control" required id="eventname" name="eventname" aria-describedby="eventname">
                             </div>
                             <div class="mb-3">
-                                <label for="eventtype" class="form-label">Event type</label>
+                                <label for="eventtype" class="form-label">Event Place</label>
                                 <input type="text" class="form-control" id="eventtype" name="eventtype">
                             </div>
                             <div class="mb-3">
@@ -133,8 +190,12 @@
                                 <input type="date" required class="form-control" id="eventdate" name="eventdate">
                             </div>
                             <div class="mb-3">
-                                <label for="eventstyle" class="form-label">Event Style Color</label>
-                                <select name="eventstyle" form="event" id="eventstyle" class="form-select" aria-label="Default select example">
+                                <label for="eventtime" class="form-label">Event Time</label>
+                                <input type="time" required class="form-control" id="eventtime" name="eventtime">
+                            </div>
+                            <div class="mb-3">
+                                <label for="eventstyleb" class="form-label">Event Style Color</label>
+                                <select name="eventstyleb" form="event2" id="eventstyleb" class="form-select" aria-label="Default select example">
                                     <option selected value="1">None</option>
                                     <option value="2">Grey</option>
                                     <option value="3">Green</option>
