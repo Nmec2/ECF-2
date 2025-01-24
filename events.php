@@ -180,7 +180,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="eventtypeajax" class="form-label">Event City / Ville / Place</label>
-                                <input type="text" list="ville" class="form-control" id="eventtypeajax" name="eventtypeajax">
+                                <input type="text" list="ville" class="form-control" id="eventtypeajax" name="eventtypeajax" placeholder="Search for a city">
                                 <datalist id="ville">
                                 </datalist>
                             </div>
