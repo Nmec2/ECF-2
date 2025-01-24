@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="./style/bootstrap.css">
 </head>
 <body>
+    <header>
+        <nav class="navbar p-3 bg-dark">
+            <div class="container-fluid">
+                <a href="./index.php" class="navbar-brand text-light fw-bolder ms-5">SmartEvent</a>
+            </div>
+        </nav>
+    </header>
     <div class="container min-vh-100 d-flex justify-content-center align-items-center">
         <form id="form" action="./validate_create.php" method="POST">
             <?php

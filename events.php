@@ -27,8 +27,8 @@
             <p class="fs-3 text-light fw-bolder text-center pt-3">SmartEvent</a>
             <p class="fs-5 text-danger text-center pt-3"><?php echo 'Bienvenue '. $_SESSION['name']?></a>
             <p class="fs-6 text-light text-center pt-1"><?php echo 'Membre depuis le '. $_SESSION['date_user']?></a>
-            <div id="flex" >
-                <a class="btn btn-primary"  role="button"  data-bs-toggle="modal" data-bs-target="#loginmodal">Profil</a>
+            <div id="flex">
+                <a class="btn btn-primary"  role="button" href="./profil.php">Profil settings</a>
                 <a class="btn btn-primary" href="#" role="button">My Event</a>
                 <a class="btn btn-primary"  role="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Event</a>
                 <a class="btn btn-primary" href="./deconnexion.php" role="button">Deconnexion</a>
@@ -49,6 +49,22 @@
                 $req2 = $bdd->prepare('SELECT `id_event`, `name`, `type`, DATE_FORMAT(date, "%d/%m/%Y") as DATE_AFF, `time`, `text`, `style`, `id_user` FROM `events` WHERE `id_user` = :id ORDER BY `date` ASC, `time` ASC');
                 $req2->bindParam(':id', $id_user, PDO::PARAM_INT);
                 $req2->execute();
+
+                $req3 = $bdd->prepare('SELECT `id_event`, `name`, `type`, DATE_FORMAT(date, "%d/%m/%Y") as DATE_AFF, `time`, `text`, `style`, `id_user` FROM `events` WHERE `id_user` = :id ORDER BY `date` ASC, `time` ASC');
+                $req3->bindParam(':id', $id_user, PDO::PARAM_INT);
+                $req3->execute();
+                $req4 = $req3->fetch(PDO::FETCH_ASSOC);
+                if($req4 == NULL){
+                    echo    '<div class="card bg-light mb-3 " style="max-width: 100%;">
+                    <div class="card-header"> No Event Set</div>
+                    
+                        <div class="card-header"></div>
+                            <div class="card-body">
+                                <h5 class="card-title"></h5>
+                                <p class="card-text"></p>
+                            </div>
+                 </div>';
+                }
                 while($result = $req2->fetch(PDO::FETCH_ASSOC)){
                     $color = $result['style'];
                     switch ($color) {
@@ -74,17 +90,7 @@
                             $color = 'text-bg-dark';
                             break;
                     } 
-                //     if(!isset($result)){
-                //     echo    '<div class="card bg-light mb-3 " style="max-width: 100%;">
-                //         <div class="card-header"> No Event Set</div>
-                        
-                //             <div class="card-header"></div>
-                //                 <div class="card-body">
-                //                     <h5 class="card-title"></h5>
-                //                     <p class="card-text"></p>
-                //                 </div>
-                //      </div>';
-                // }
+                    
                     echo '<div class="card '. $color .' mb-3 " style="max-width: 18rem;">
                             <div class="card-header">'. $result['name'] .'</div>
                             
@@ -159,11 +165,6 @@
         </div>
     </div>
 
-    
-    <!-- Modal -->
-        
-
-
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -178,8 +179,10 @@
                                 <input type="text" class="form-control" required id="eventname" name="eventname" aria-describedby="eventname">
                             </div>
                             <div class="mb-3">
-                                <label for="eventtype" class="form-label">Event Place</label>
-                                <input type="text" class="form-control" id="eventtype" name="eventtype">
+                                <label for="eventtypeajax" class="form-label">Event City / Ville / Place</label>
+                                <input type="text" list="ville" class="form-control" id="eventtypeajax" name="eventtypeajax">
+                                <datalist id="ville">
+                                </datalist>
                             </div>
                             <div class="mb-3">
                                 <label for="eventtext" class="form-label">Event Text Content</label>
@@ -218,7 +221,7 @@
             </div>
         </div>
     </main>
-
+    <script src="./ajax.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>

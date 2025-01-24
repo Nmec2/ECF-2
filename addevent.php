@@ -8,7 +8,7 @@
     if(isset($_POST['submit-events'])){
         
         $eventname = $_POST['eventname'];
-        $eventtype = $_POST['eventtype'];
+        $eventtype = $_POST['eventtypeajax'];
         $eventtext = $_POST['eventtext'];
         $eventdate = $_POST['eventdate'];
         $eventstyle = $_POST['eventstyleb'];
