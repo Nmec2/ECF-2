@@ -14,27 +14,26 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" loading="lazy">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Events page list all events created by the user.">
-    <link rel="stylesheet" href="./style/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./style/style.css">
     <title><?php echo $_SESSION['name'];?> | Event</title>
 </head>
 <body>
-<!-- Button trigger modal -->
     <header>
         <div id="sidebar" class="sm-5 bg-dark">
             <p class="fs-3 text-light fw-bolder text-center pt-3">SmartEvent</a>
-            <p class="fs-5 text-danger text-center pt-3"><?php echo 'Bienvenue '. $name;?></a>
+            <p class="fs-5 text-light text-center pt-3"><?php echo 'Bienvenue '. $name;?></a>
             <p class="fs-6 text-light text-center pt-1"><?php echo 'Membre depuis le '. $date;?></a>
             <div id="flex">
-                <a class="btn btn-primary"  role="button" href="./profil.php">Profil settings</a>
-                <a class="btn btn-primary" href="#" role="button">My Event</a>
-                <a class="btn btn-primary"  role="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Event</a>
-                <a class="btn btn-primary" href="./deconnexion.php" role="button">Deconnexion</a>
+                <a class="btn btn-danger"  role="button" href="./profil.php">Profil settings</a>
+                <a class="btn btn-danger" href="#" role="button">My Event</a>
+                <a class="btn btn-danger"  role="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Event</a>
+                <a class="btn btn-danger" href="./deconnexion.php" role="button">Deconnexion</a>
             </div>
         </div>
 
@@ -102,7 +101,7 @@
                                         <h5 class="card-title">'. $result['type'] .'</h5>
                                         <p class="card-text">'. $result['text'] .'</p>
                                         <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal'.$result['id_event'].'">Edit</button>
-                                        <a class="btn btn-primary" role="button" href="delete.php?id='.$result['id_event'].'">Delete</a>
+                                        <a class="btn btn-danger" role="button" href="delete.php?id='.$result['id_event'].'">Delete</a>
                                     </div>
                          </div>';
                         $date = explode('/',$result['DATE_AFF']);
@@ -150,7 +149,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+                                                    <button type="submit" name="submit" class="btn btn-danger">Save changes</button>
                                                 </div>
                                             </form>
                                     </div>
@@ -216,7 +215,7 @@
                             
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" name="submit-events">Add Event</button>
+                                <button type="submit" class="btn btn-danger" name="submit-events">Add Event</button>
                             </div>
                         </form>
                     </div>
