@@ -25,8 +25,8 @@ if(isset($_POST['submit-co']) && $_POST['pass'] != '' && $_POST['mail'] != ''){
             $_SESSION['connecter'] = 'true';
             if(isset($_POST['Check1'])){
                 $remember = $_POST['Check1'];
-                setcookie("remember_mail", $mail, time() + 3600*24*365);
-                setcookie("remember", $remember, time() + 3600*24*365);
+                setcookie("remember_mail", $mail, time() + 3600*24*30);
+                setcookie("remember", $remember, time() + 3600*24*30);
             } else {
                 setcookie("remember_mail", '', time() - 36000);
                 setcookie("remember", '', time() - 3600);
