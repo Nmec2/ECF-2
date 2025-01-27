@@ -19,7 +19,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Events page list all events created by the user.">
-    <link rel="stylesheet" href="./style/bootstrap.css">
+    <link rel="stylesheet" href="./style/bootstrap-min.css">
     <link rel="stylesheet" href="./style/style.css">
     <title><?php echo $_SESSION['name'];?> | Event</title>
 </head>
@@ -223,7 +223,7 @@
             </div>
         </div>
     </main>
-    <script src="./ajax.js"></script>
+<script src="./ajax.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>

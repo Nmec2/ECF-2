@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | SmartEvent</title>
     <meta name="description" content="Home page, SmartEvent is a website that allows you to create and manage your events.">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/bootstrap.css">
 </head>
@@ -27,7 +26,7 @@
     <main>     
         <div class="container text-center d-flex justify-content-evenly overflow-hidden" style="height: 80vh;">
             <div class="row align-items-center">
-                <div class="col ">
+                <div class="col">
                     <h1 class="display-1 text-light">SmartEvent</h1>
                     <p class="lead text-light">Get started with us check-out our new features.</p>
                     <a href="./create.php" class="btn btn-primary">Create Account</a>

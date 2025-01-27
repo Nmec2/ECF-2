@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Create account page of SmartEvent that allows you to create an account. You need to create an account to access to the events manager.">
-    <title>Document</title>
+    <title>Create your SmartEvent Account</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/bootstrap.css">
 </head>
