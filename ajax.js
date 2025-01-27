@@ -5,13 +5,9 @@ console.log(searchForm);
 
 let response = document.getElementById('ville');
 console.log(response);
-let h2 = document.createElement("h2");
-
-let ulPointer = document.getElementsByTagName('ul');
 
 searchInput.addEventListener('input', function(){
     response.innerHTML = "";
-    console.log('ok');
     if (searchInput.value.length >= 2 ) {
         let formData = new FormData(searchForm);
         fetch('requete.php', {

@@ -8,6 +8,8 @@
     if(!$_SESSION['id']){
         header('Location: connexion.php?error=connect');
     } 
+    $name = $_SESSION['name'];
+    $date = $_SESSION['date_user'];
     
 ?>
 
@@ -16,6 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Events page list all events created by the user.">
     <link rel="stylesheet" href="./style/bootstrap.css">
     <link rel="stylesheet" href="./style/style.css">
     <title><?php echo $_SESSION['name'];?> | Event</title>
@@ -25,8 +28,8 @@
     <header>
         <div id="sidebar" class="sm-5 bg-dark">
             <p class="fs-3 text-light fw-bolder text-center pt-3">SmartEvent</a>
-            <p class="fs-5 text-danger text-center pt-3"><?php echo 'Bienvenue '. $_SESSION['name']?></a>
-            <p class="fs-6 text-light text-center pt-1"><?php echo 'Membre depuis le '. $_SESSION['date_user']?></a>
+            <p class="fs-5 text-danger text-center pt-3"><?php echo 'Bienvenue '. $name;?></a>
+            <p class="fs-6 text-light text-center pt-1"><?php echo 'Membre depuis le '. $date;?></a>
             <div id="flex">
                 <a class="btn btn-primary"  role="button" href="./profil.php">Profil settings</a>
                 <a class="btn btn-primary" href="#" role="button">My Event</a>

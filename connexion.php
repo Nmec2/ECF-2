@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connexion page of SmartEvent that redirect you to your events manager.">
     <title>Connexion</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/bootstrap.css">
@@ -43,8 +44,8 @@
                 <input type="checkbox" class="form-check-input" id="Check1" name="Check1" <?php if(isset($_COOKIE['remember'])){echo 'checked';} ?>>
                 <label class="form-check-label" for="Check1">Remember me</label>
             </div>
-            <p>No account ? Create one <a href="create.php">here<a><p>
-            <button type="submit" name="submit-co" class="btn btn-primary">Connexion</button>
+            <p>No account ? Create one <a rel="create account" href="create.php">here<a><p>
+            <a type="submit" name="submit-co" class="btn btn-primary">Connexion</a>
         </form>
     </div>
 
